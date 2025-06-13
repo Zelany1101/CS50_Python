@@ -1,0 +1,40 @@
+Its standard to Write Code that tests your own code.
+
+Unit Testing == Formal description of describing testing of the individual units in your program; Units are typically functions
+
+~~~~~~~~~~calculator.py
+def main():
+    x = int(input("What's x? "))
+    print("x squared is", square(x))
+
+
+def square(n):
+    return n * n
+
+
+if __name__ == "__main__":
+    main()
+
+~~~~~~~~~~~test_calculator.py
+from calculator import square
+
+
+def main():
+    test_square()
+
+
+def test_square():
+    if square(2) != 4:
+        print("2 squared was not 4")
+    if square(3) != 9:
+        print("3 squared was not 9")
+
+
+if __name__ == "__main__":
+    main()
+--------------------------------------------------------------
+
+Q: How to test capabilities without expanding test code?
+
+'assert' command --- Tells the compiler that something, some assertion, is true:
+

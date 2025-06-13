@@ -1,0 +1,137 @@
+---------------------------------------------------------------------------------------------------
+                                      Regular Expressions (regexes)
+---------------------------------------------------------------------------------------------------
+
+    ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+    docs.python.org/3/library/re.html
+    ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+
+Enables the user to examine patterns within the code (e.g. validating email address format). Python
+has a library called 're' that has a number of built-in functions that can validate user inputs
+against patterns.
+    * [search] function in 're'
+        re.search(pattern, string, flags=0)
+            * Flag -- Parameter to pass in to modify behavior of the function
+
+[validation] -- Special symbols can be passed to the interpreter for validation.
+    .   any character except a new line     * Wild card that matches any single character, except \n
+    *   0 or more repetitions
+    +   1 or more repetitions   * Means one or more of the thing that comes before it
+    ?   0 or 1 repetition
+    {m} m repetitions
+    {m,n} m-n repetitions
+    ^   matches the start of the string
+    $   matches the end of the string or just before the newline at the end of the string
+    []  set of characters to look for
+    [^] complementing the set; cannot match any of these characters
+
+E.g.
+      ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~                 "." matches any single character except
+        import re                                                   newline characters
+                                                                    "+" means one or more of the preceding element
+        email = input("What's your email? ").strip()                ".+@.+" means "one or more character
+        if re.search(".+@.+", email):                               followed by @, followed by one or
+            print("Valid")                                          more characters"
+        else:
+            print("Invalid")
+      ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+            "." matches "a" but not "\n"
+            "a+" matches "a", "aa", "aaaa"
+            ".+" matches one or more of any character, meaning "at least one character of any kind"
+
+            so...
+
+            .+ means at least one character
+            @ symbol
+            .+ at least one character again
+
+            so it will match strings like...
+
+            "a@b"
+            "hello@world"
+            "john.doe@example.com"
+
+            but not...
+
+            "@" -- no characters before or after
+            "abc" -- no @ symbol
+
+Raw string -- Tells python to not evaluate any backlashes as normal. Pass it literally into the
+interpretor.
+    [r"___"] like [f"___"]
+
+Character Classes
+    \w -- represents a word character (alphanumeric and underscore)
+    \W -- not a word character
+    \d -- decimal digit
+    \D -- not a decimal digit
+    \s -- whitespace characters
+    \S -- not a whitespace character
+    [a-zA-Z0-9_]
+
+Lists or groups of value to validate against:
+    A | B   ---    either A or B
+    (...)   ---    a group
+    (?:...) ---    non-capturing version
+    (\w|\s) ---    matching word list or white space class
+
+Capturing groups allows the user to treat regex pattern as a single unit and is useful for extracting
+data.
+    For example, extracting day, month, and uear from birthday dates in dd-mm-yyyy uses regex of:
+        (\d{1,2})-(\d{1,2})-(\d{4})
+
+Capturing groups also allows backreferences, a feature to reference and reuse the text captured by a
+capturing group within the same regex pattern, providing a way to search for repeated patterns and
+validate complex text structures.
+    * Reference a capturing group by using backslash followed by the group number assigned based on
+    the order of opening parentheses in the regex pattern, starting from 1.
+    * Examples
+        (abc)\1 matches abcabc
+        (a|b|cd) \1 matches aa, bb, or cdcd
+        (\d)(.+)\1+\2? matches 1a1, 1a1a, 1a11, 1a11a1
+
+When you specify parentheses in a regular expression,
+everything in the parentheses will be returned to you
+as a return value from the re.search(), allowing you to
+extract information from the user's own input
+    matches = re.search(r"^(.+), (.+)$", name)
+
+    returns the value of .+ and .+ to matches
+---------------------------------------------------------------------------------------------------
+                                            Flags
+---------------------------------------------------------------------------------------------------
+The re library comes with a few variables--constants, that have meaning to re.search that would go
+in the flag section of the function.
+    re.IGNORECASE -- Ignores the case of the user's input
+    re.MULTILINE -- To read multiline responses
+    re.DOTALL -- Configure dot to recognize all characters plus new lines as well
+
+---------------------------------------------------------------------------------------------------
+                                    Other Functions
+---------------------------------------------------------------------------------------------------
+
+re.match(pattern, string, flag=0)
+    * Matches starting from the start of a string
+
+re.fullmatch(pattern, string, flag-0)
+    * Matches at the start and end of the string
+
+---------------------------------------------------------------------------------------------------
+                                        := Operator
+---------------------------------------------------------------------------------------------------
+The walrus := operator assigns a value from right to left and allows the user to ask a boolean
+question at the same time.
+
+---------------------------------------------------------------------------------------------------
+                        re.sub(pattern, repl, string, count=0, flags=0)
+---------------------------------------------------------------------------------------------------
+Returns the string obtained by replacing the leftmost non-overlapping occurrences of pattern in
+string by the replacement repl.
+    * If pattern is not found, string returned unchanged.
+    * repl can be a string or a function;
+        - If it is a string, any backslash escapes are processed.
+            * \n converted into a single newline character
+            * \r converted into a carriage return etc
+            * Unknown escapes of ASCII letters are reserved for future use and treated as errors
+            * Backreferences are replaced with the sub-string matched by the group
+                -\6 converted to group 6 substring

@@ -1,0 +1,120 @@
+File I/O
+---------------------------------------------------------------------------------------------------
+Everything so far was stored in memory, a temporary storage. Files are stored long term. File IO
+is loading code that can read information from or write to (save information) to files themselves,
+in other words, persistent data.
+
+----------------------------------------------------------------------------------------------------
+                                        L I S T S
+                                        ---------
+Stores more than one value in a variable (lists are stored in memory but is a good starting point for
+persistent data)
+
+-----------------------------------------------------------------------------------------------------
+                                            open()
+Opens a file up programmatically to read or write to a file. If the file does not exist yet, it
+creates the file. Open returns a file handle, a special value that allows the user to access the file
+subsequently
+
+    open("argument: name of file", "argument: mode of w r a")
+
+    * w = write, r = read, a = append etc.
+        ex: open('names.txt', 'w')
+
+    docs.python.org/3/library/functions.html#open
+
+    methods:
+
+    __.write() == write to the file that you opened using open() and recreates it with new inputted content
+    __.close() == close and save the file
+
+        ex:
+            name = input('What's your name? ')
+            file = open('names.txt', 'a')
+            file.write(f'{name}\n')
+            file.close()
+
+---------------------------------------------------------------------------------------------------
+                                            with
+Pythonic; Allows you to avoid explicitly calling __.close() and instead specify that in this context
+to open and automatically close some file
+
+        ex:
+            name = input('What's your name? ')
+            with open('names.txt', 'a') as file:
+                file.write(f'{name}\n')
+
+'with' also allows you to read to a file
+
+        ex:
+            with open('names.txt', 'r') as file:
+                lines = file.readlines()
+                # reads all of the lines of the file and returns a list
+
+            for line in lines:
+                print('hello,' line.rstrip())
+        -----------------------------VS---------------------------------
+
+            with open('names.txt', 'r') as file:
+                for line in file:
+                    print('hello,', line.rstrip())
+
+        --------------------------------------------------------------
+
+        ex:
+            names = []
+
+            #if you open a file to read it, you do not need to specify r
+            with open('names.txt') as file:
+                for line in file:
+                    names.append(line.rstrip()) #appending to list in memory, not in the file
+
+            for name in sorted(names):
+                print(f'hello, {name}')
+
+        -------------------------------VS-------------------------------
+
+            with open('names.txt') as file:
+                for line in sorted(file):
+                #sorts the file itself
+                    print('hello', line.rstrip())
+
+    docs.python.org/3/library/functions.html#sorted
+
+        sorted(iterable, /, ", key=None, reverse = False)
+
+            iterable = argument that can be looped over (ex: a list of values)
+            key = how you want to sort it
+            reverse = changed to True/False depending on code needs
+
+                ex:
+                    names = []
+
+                    with open('names.txt') as file:
+                        for line in file:
+                            names.append(line.rstrip())
+
+                    for name in sorted(names, reverse=True):
+                        print(f'hello, {name}')
+---------------------------------------------------------------------------------------------------
+                                    csv -- Comma Separated Values
+
+Programmers tend to use csv files over text files. Can be used to create dictionary data types by
+putting the key as the first row and the following rows holding the values of each item.
+
+CSV library
+    [csv.DictReader()] - Take a file and read it as a dictionary -- make sure to open the file before
+
+
+---------------------------------------------------------------------------------------------------
+                                            Pillow (PIL)
+Library for manipulating images. Can check metedata of image, manipulate image, and more.
+    [import PIL]
+    [from PIL import Image]
+        * img = Image.open("filename.jpeg")
+            * Returns an image object
+        * img.close()
+            * closes the image after it has been opened
+        * with Image.open("filename.jpeg") as img:
+            ...
+            * automatically closes the image as img in the indented section

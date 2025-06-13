@@ -1,0 +1,73 @@
+-------------------------------------------------------------------------------------------------------
+    ~ * ~ * ~ * ~                               NESTING                             ~ * ~ * ~ * ~
+-------------------------------------------------------------------------------------------------------
+Why you should not nest your code:
+    1. Readability
+    2. Efficiency
+
+-------------------------------------------------------------------------------------------------------
+                                         Ways to Prevent Nesting
+-------------------------------------------------------------------------------------------------------
+    (1) Extraction
+
+Pull out part of the function to be its own function
+
+
+    (2) Inversion
+
+Flipping conditions and switching to an early return
+*** Error/The bad is checked first
+
+
+-------------------------------------------------------------------------------------------------------
+    ~ * ~ * ~ * ~                              NAMING                             ~ * ~ * ~ * ~
+-------------------------------------------------------------------------------------------------------
+
+Naming Practices:
+    - avoid naming variables with a single letter as they tell nothing about the variable
+    - never abbreviate names as it relies on context than you may have
+    - do not put types in name -- Hungarian Notation
+    - put units in variable names as it adds classification and removes ambiguity completely
+    - add types to your types
+        - avoid naming class with 'Base' or 'Abstract' for parent class
+        - rename child name instead with great specificity
+    - if failing to kno wwhat to do, cose structure might be the issue
+
+*** YOU SPEND MORE TIME READING CODE THAN WRITING CODE
+
+-------------------------------------------------------------------------------------------------------
+    ~ * ~ * ~ * ~                              DESIGN                             ~ * ~ * ~ * ~
+-------------------------------------------------------------------------------------------------------
+try to keep error handling separate from the main code at hand
+
+-------------------------------------------------------------------------------------------------------
+    ~ * ~ * ~ * ~                               PEP 8                                 ~ * ~ * ~ * ~
+-------------------------------------------------------------------------------------------------------
+peps.python.org/pep-0008/
+
+Readability counts
+    - Style guide is about consistency
+    -
+
+Factors:
+    - Indentation
+    - Tabs/spaces
+    - Max line length
+    - Blank lines
+    - Imports
+    ...etc
+
+pylint -- linter: program that statically analyses code for inconsistencies in a prescribed style guide
+    pip install pyling
+    pycodestyle.pycqa.org
+
+pycodestyle -- de facto standard for formatting code for the user
+    pycodestyle.pycqa.org
+
+black -- most popular -- opinionated formatter
+    pip install black
+    black.readthedocs.io
+
+
+
+

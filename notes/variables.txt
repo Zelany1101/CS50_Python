@@ -1,0 +1,47 @@
+# global variables are not defined within a function and will have a global scope
+# local variables are those defined within a function and scope is limited to that function only
+
+#-----------------------------------------------------------------------------------
+
+# creating a local variable:
+def f():
+    #local variable
+    s = 'I love python'
+    print(s)
+
+# Driver code
+f()
+
+#------------------------------------------------------------------------------------
+
+# creating a global variable
+def d():
+    print('Inside Function', a)
+
+# global scope
+a = 'I love python'
+d()
+print('Outside Function', a)
+# s is defined as a global variable is therefore can be used both inside and outside the function
+
+#------------------------------------------------------------------------------------
+
+# Why ise local and global variables?
+
+# only need the global keyword in a function if wanting to do assignments or change the global
+# variable when wanting to use a global variable in a function
+#       global keyword is not needed for printing nor accessing
+
+#modifies the global variable 's'
+def c():
+    global b
+    b += ' GFG'
+    print(b)
+    b = 'Look for Python'
+    print(b)
+
+#global scope
+b = 'Python is great!'
+c()
+print(b)
+

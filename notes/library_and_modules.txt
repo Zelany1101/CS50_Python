@@ -1,0 +1,114 @@
+libraries == files of codes other people/you have written that you can use in your own program
+    *** Python supports this idea of being able to share code with others, across objects through
+    modules
+
+Module == Library with functions and features built into it
+    *** Encourages reusuability of code
+    Uses keyword [import] to import content/functions of a module into a program file
+    In the program, functions in the module are called by [modulename].[modulefunction](parameters)
+
+Built-in python Modules:
+    ~*~*~*~*~**~*~*~*~*~**~*~*~*~*~*~*~*~*~*~*~*~
+        doc.python.org/3/library/[...].html
+    ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+    - random module library
+        ex: random.choice(["seq", "list"])
+        ex: random.randint(a, b)
+        ex: random.shuffle(x) -- permutations
+
+
+Module Keywords:
+    [import]
+        - imports content/functions of a module into a program file
+    [modulename].[modulefunction](parameters)
+        - calls functions in the module
+    [from]
+        - used to importing functions from a module but more specific than import alone instead of
+          importing everything in the module which could add to the processing of the file
+        - also allows for differentiating between modules with similar function names when calling
+          the function
+
+
+--------------------------------------------------
+
+command line arguments
+    - providing user input in the command line rather than using input()
+
+sys module -- contains functionalities to the system itself allowing usage of command line arguments
+
+sys.argv -- system argument vector -- the list of all of the words the user typed in before they typed enter
+
+sys.exit -- exit the program prematurely
+
+----------------------------------------------------------------------------------------------------------
+                                         Packages: Third Party
+                                           Modules/Library
+----------------------------------------------------------------------------------------------------------
+Accessible through...
+    - PyPI -- Python Package Index
+        via web -- pypi.org
+        via command line pypi
+
+
+cowsay -- package in python that allows the user to have a cow say something on the screen
+    pypi.org/project/cowsay
+
+
+pip -- program that comes with program that lalows the user to install packages onto their system with a command
+    pip install cowsay
+        -pip is command for packaage manager
+
+
+-------------------------------------------------------------------------------------------------------------
+                                                    APIs
+-------------------------------------------------------------------------------------------------------------
+APIs -- Application Programming Interface
+    - Third party serviecs that users can write code to communicate to
+    - Many APIs live on the Internet
+    - Write code that pretends to be a browser, connects to Third Party API on a server, and download data from
+      server and incorporate into program
+
+requests Library:
+    - package that can be installed via pip
+    - request library allows the user to make web requests (Internet requests) using Python code essentially
+      as though the user were a browser themselves
+        - automate retrieval of URLs that start with HTTP or HTTPS
+
+    pypi.org/project/requests
+
+----------------------------------------------------------------------------------------------------------
+
+docs.python.org/3/library/json.html
+    - manipulate JSON data pulled from API calls
+
+
+-------------------------------------------------------------------------------------------------------------
+                                        __name__ == '__main__'
+                                    (rather than calling main()
+-------------------------------------------------------------------------------------------------------------
+
+__name__ == '__main__' is a conditional statement that checks if the current script is being run as the main
+    program (directly executed) [or if it is being imported as a module into another script]
+        - basically executes certain code when the script is run directly
+        - promotes modularity and code reusability
+
+__name__        built-in Python variable that holds the name of the module
+'__main__'      when a script is run directly, the __name__ variable is set to the string '__main__'
+
+Benefits:
+    - separate code that should only run when the script is directly executed (like main program logic)
+      from functions that can be imported and used by other modules
+    - prevents unintended execution when importing a module
+
+-------------------------------------------------------------------------------------------------------------
+                                                    packages
+-------------------------------------------------------------------------------------------------------------
+
+package = folder with multiple modules
+    - needs a file called __init__,py
+        - can be empty
+        - lets the program know its a package
+
+from *package_name*.*file_name* import *function*
+
+

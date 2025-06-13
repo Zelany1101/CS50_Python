@@ -1,0 +1,192 @@
+Two Types of Errors:
+    1) Syntax Errors -- AKA parsing errors
+        Parser repeats the offending line and displays little arrows pointing at the token in the line
+        in the line where the error was detected. Must be fixed by the user.
+        File name and lin number are printed to know where to look.
+
+        ~~~~~~~~~~~~~~~~EXAMPLE~~~~~~~~~~~~~~~~~
+        >>> while True print('hello world')
+            File "<stdin>", line 1
+                while True print('hello word')
+        SyntaxError: invalid syntax
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    2) Exceptions
+        Error when attempt is made to execute the code. Errors detected during execution are called
+        exceptions and are not unconditionally fatal. Most are not handled by programs and result
+        in error messages as....
+
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~EXAMPLE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        >>> 10 * (1/0)                              >>> 4 + spam*3
+        Traceback (most recent call last):          Traceback (most recent call last):
+            File "<stdin>", line 1, in <module>         File "<stdin>", line 1, in <module>
+                10 * (1/0)                                  4 + spam*3
+                      ~^~                                       ^^^^
+        ZeroDivisionError: division by zero         NameError: name 'spam' is not defined
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+        Last line of the error message indicates what happened. The string printed as the exception
+        type is the name of the built-in exception that occurred. The rest of the line provides
+        detail based on the type of exception and what caused it. Preceding part of the error
+        message shows the context where the exception occurred, in the form of stack traceback.
+
+        AKA Run TIme Error.
+
+        User must program a defensive code block against this error to combat it.
+
+Error handling is important so that users do not get the error and will behave as the program expects it to.
+
+                                ----------------------------------------------
+                                              HANDLING EXCEPTIONS
+                                 ----------------------------------------------
+
+'try' + 'except' : Test out user input before something goes wrong. try to do this, if does not work, do this.
+    ~~~~~~~~~~~~~~~~EXAMPLE~~~~~~~~~~~~~~~~~                        ~~~~~~~~~~~~~~~EXAMPLE~~~~~~~~~~~~~~
+    try:                                        Make it even more   try:
+        x = int(input('What's x?'))                  optimal            x = int(input('What's x?'))
+        print(f'x is {x}')                            -->           except ValueError:
+    except ValueError:                          Use least lines of      print('X is not an integer)
+        print('x is not an integer')             code as possible   print(f'x is {x}')
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Right to left, the program takes an incorrectly inputted character and attempts to assign it as an
+    integer. If this fails, the assignment of the value x never occurs. Therefore, no x is printed on
+    the final line of code.
+
+'else' : Another way to implement try to catch errors
+    ~~~~~~~~~~~~~~EXAMPLE~~~~~~~~~~~~~~~~
+    try:                                                if no exception occurs,
+        x = int(input('What's x?'))                     the program runs the block of code
+    except ValueError:                                  within else.
+        print('x is not an integer')
+    else:
+        print(f'x is{x}')
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    while True:
+    try:
+        x = int(input("What's x?"))                     Continues to prompt the user
+    except ValueError:                                  to cooperate instead of simply
+        print("x is not an integer")                    ending the program.
+    else:
+        break
+
+    print(f"x is {x}")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Pythonic way of programmming in Python is to just try the code and if there's an error, to just
+catch it. Some programs are more conditional (if, elif, else) but Python does not necessarily
+need to check conditionals every time as it can catch the error and still continue as a program.
+
+-------------------------------------------------------------------------------------------------
+                                        DEBUGGING
+-------------------------------------------------------------------------------------------------
+Tools:
+    - print() to display value of passing parameters to see where the error lies
+    - activity bar >> built in debugger (breakpoint)
+
+breakpoints == mechanism when using a text editor on what lines of codes do you want to pause/
+break execution of the program to poke around at a specific line of code instead of running
+the whole program
+    - break the execution down to each individual line of code to find the error
+    - hover over left of a line number and a circle can be toggled for a breakpoint; tells
+      computer to break/pause execution of the code just before the chosen line
+    - after this, run the debugger (not the whole program)
+        -'run and debug' == ctrl shift d
+
+
+---------------------------------------------------------------------------------------------------
+                                        DICTIONARY
+---------------------------------------------------------------------------------------------------
+Stores collection of related information {key : value}
+
+    METHODS--------------------------------
+
+dictionary_name.get('key', ['error string'])
+    - avoids key error when calling a key
+
+dictionary_name.update('key1':value1, 'key2':value2, ... 'keyn':valuen)
+    - add/updates multple keys
+
+dictionary_name.keys()
+    - returns all the keys in a dictionary
+
+dictionary_names.values()
+    - returns all the values in a dictionary
+
+dictionary_name.pop(key)
+    - returns value associated with key and remove the key from the dictionary
+
+dictionary_name.clear()
+    - removes all keys in dictionary
+
+dictionary_name.items()
+    - iterate through all key:value pairs
+    - returns a set of key:value pairs
+
+---------------------------------------------------------------------------------------------------
+                                            LISTS []
+---------------------------------------------------------------------------------------------------
+Stores indexed immutable data types
+
+    METHODS----------------------------------
+
+list_name.append('value')
+    - adds elements at the end of the list
+
+list_name.remove('value')
+    - removes first instance of element in list
+
+list_name.extend([])
+    - appends another list's elements onto the lis
+
+list_name.insert(index, 'value')
+    - inserts element at stated index
+
+list_name.reverse()
+    - flips the order
+
+list_name.pop()
+    - removes the last element in list
+
+list_name.clear()
+    - removes all elements in a list
+
+
+---------------------------------------------------------------------------------------------------
+                                    LISTS [] & DICT {} COMPREHENSION
+---------------------------------------------------------------------------------------------------
+Comprehension == Quick way to build a list or dict from data already known
+    list comprehension syntax: can reiterable through every element in a list or filter out elements
+    in a list into a new list
+
+            [<variable> for <element> in <list> [if <condition>]]
+
+            for every element that exists in list, return the element as variable in a new list
+
+    dict comprehension syntax: iterates over elements in a list and build a dict from it
+
+            {<key>:<value> for <element> in <list>}
+
+            for every element in list, make a key:value pair
+
+
+---------------------------------------------------------------------------------------------------
+                                            TUPLES ()
+---------------------------------------------------------------------------------------------------
+tuple == ordered, immutable, finite sequence or ordered list of numbers
+    - can be indexed to gain access to elements in a tuple
+    - feature of being able to be unpacked -- take elements in tuple and make them their own distinct
+      variable
+
+Note:
+    An empty tuple must have a comma to indicate it is a tuple
+        tuple = (,)
+
+list vs tuple
+    - tuples cant add or change any value inside a tuple after it is defined
+    - tuples take up much less memory than lists
+*** Use tuple for storing fixed lists to save more memory -- efficient memory usage
+
+
+
+
+

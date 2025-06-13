@@ -1,0 +1,101 @@
+---------------------------------------------------------------------------------------------------
+                                Object-Oriented Programming (OOP)
+---------------------------------------------------------------------------------------------------
+***Functional programming vs Procedural programming vs Object-Oriented programming
+
+Tuple - Immutable collection of data (TypeError)
+
+---------------------------------------------------------------------------------------------------
+                                            Classes
+---------------------------------------------------------------------------------------------------
+Blueprint for pieces of data objects -- User definable mold/blueprint of custom data types
+
+    ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+    docs.python.org/3/tutorial/classes.html
+    ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+
+Store attributes inside of the class using . (dot) notation
+
+Everytime the user uses a class, they are creating an 'OBJECT'. An object is the incarnation or
+instantiation of that class.
+    "Object is an instance of a class"
+
+Note: Just by defining a class, a funciton is created who's name is identifical to the class name
+
+Classes come with certain 'METHODS', or functions, inside of them. These functions allow the user
+to determine behavior in a standard way.
+
+    __init__        initialize the contents of an object from a class
+
+    __str__         special method user can define in the class, allowing Python to automatically
+                    call the function for the user anything some other function wants to see the
+                    object as a string
+---------------------------------------------------------------------------------------------------
+                                                raise
+---------------------------------------------------------------------------------------------------
+    ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+
+
+Use to raise a user defined exception of an error to catch.
+---------------------------------------------------------------------------------------------------
+                                            Properties
+---------------------------------------------------------------------------------------------------
+Attribute with defense mechanisms from modifications or mistakes.
+
+    keyword: "@property"
+
+    "decorators" are functions that modify the behavior of other functions
+
+---------------------------------------------------------------------------------------------------
+                                        Class Methods
+---------------------------------------------------------------------------------------------------
+Sometimes its not necessary to associate a function with objects of a class but rather with the
+class itself.
+
+    keyword: "@classmethods" -- Decorator, function used to specify that this method is not by
+    default an instance method that has access to self object, but a class method that does not
+    have access to self but does know what class it is inside.
+
+Instance methods -- Writing functions inside of classes that are automatically passed a reference
+to self, the current object
+    * Sometimes you do not need that, just knowing the class is enough and even assume np object
+    exists for that class
+
+    ex: hat = Hat() #common syntax for instantiating an object of a class
+
+
+Class methods --
+    * Use class as a container for data or functionality that are somehow conceptually related
+
+***Note: Instance variables vs class variables | Instance methods vs class methods
+        - A method is automatically an instance method
+        - Using the decorator @classmethods makes it a class method
+
+Many more methods not talked about like...
+    Static methods -- decorator "@staticmethod"
+---------------------------------------------------------------------------------------------------
+                                           Inheritance
+---------------------------------------------------------------------------------------------------
+With OOP, user can design classes in an hierarchical pattern, allowing classes to inherit or borrow
+attributes (methods or variables) from another class.
+
+example:
+    ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+    docs.python.org/3/library/exceptions.html
+    ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+
+---------------------------------------------------------------------------------------------------
+                                       Operator Overloading
+---------------------------------------------------------------------------------------------------
+Operator overloading is whereby the user takes common symbols (+, -, etc) and implement the user's
+own interpretation there of.
+     ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~~*~*~*~*~*~*~*~*~*
+     docs.python.org/3/reference/datamodel.html#special-method-names
+     ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~~*~*~*~*~*~*~*~*~*
+        object.__add__(self, other)
+            self - right hand side of plus sign
+            other - left hand side of plus sign
+example:
+    ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+    docs.python.org/3/library/re.html
+    ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~

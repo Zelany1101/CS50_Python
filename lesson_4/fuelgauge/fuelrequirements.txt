@@ -1,0 +1,19 @@
+input a fraction in the format of x/y where...
+    x and y are integers -- ValueError
+    x is not greater than y -- 0 - 1
+    y is not 0 -- ZeroDivisionError
+
+
+Output a whole percentage indicating fuel gauge status
+    <= 1 should output 'E' to indicate empty
+    >= 99 should output 'F' to indicate full
+    otherwise print out a whole number percentage
+
+test:
+    when testing _/0 the program should handle a ZeroDivisionError
+    when testing one/two the program should handle a ValueError
+    when testing float/integer the program should handle a ValueError
+    when testing x>y/y the program sohuld prompt the user again
+
+*** Program needs to prompt the user for another input if the inputs are not value
+
